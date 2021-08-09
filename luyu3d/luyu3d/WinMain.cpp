@@ -1,8 +1,11 @@
 #include <Windows.h>
+#include "WindowsMessageMap.h"
 
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+	static WindowsMessageMap mm;
+	OutputDebugString(mm(msg, lParam, wParam).c_str());
 	switch (msg)
 	{
 	    case WM_CLOSE:
@@ -22,7 +25,7 @@ int CALLBACK WinMain(
 {
 	// register windows class
 	// create window instance
-	const auto pClassNmae = L"luyu3dbutts";
+	const auto pClassNmae = "luyu3dbutts";
 	WNDCLASSEX wc = {0};
 	wc.cbSize = sizeof(wc);
 	wc.style = CS_OWNDC;
@@ -40,7 +43,7 @@ int CALLBACK WinMain(
 
 	HWND hWnd = CreateWindowEx(
 		0, pClassNmae,
-		L"Happy Hard Window",
+		"Happy Hard Window",
 		WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU,
 		200,200,640,480,
 		nullptr, nullptr, hInstance, nullptr
