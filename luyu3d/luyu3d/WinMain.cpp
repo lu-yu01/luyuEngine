@@ -10,7 +10,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	{
 	    case WM_CLOSE:
 			PostQuitMessage( 69 );
-		break;
+			break;
+		case WM_KEYDOWN:
+			if (wParam == 'F')
+			{
+				SetWindowText(hWnd, "luyu coming");
+			}
+			break;
+		case WM_KEYUP:
+			if (wParam == 'F')
+			{
+				SetWindowText(hWnd, "luyu leave");
+			}
+			break;
 	}
 	return DefWindowProc(hWnd, msg, wParam, lParam);
 }
