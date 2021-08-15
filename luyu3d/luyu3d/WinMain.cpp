@@ -8,18 +8,35 @@ int CALLBACK WinMain(
 	int nCmdShow
 )
 {
-	Window wnd(800, 300, "lutyu First Box");
-	Window wnd2(200, 650, "lutyu First Box2");
+	try
+	{
+		Window wnd(800, 300, "lutyu First Box");
+		//Window wnd2(200, 650, "lutyu First Box2");
 
-	MSG msg;
-	BOOL gResult;
-	while (gResult = GetMessage(& msg, nullptr, 0 ,0) > 0)
-	{
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
+		MSG msg;
+		BOOL gResult;
+		while (gResult = GetMessage(&msg, nullptr, 0, 0) > 0)
+		{
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+		if (gResult == -1)
+		{
+			return -1;
+		}
+		return msg.wParam;
 	}
-	if (gResult == -1)
+	catch (const luyuException& e)
 	{
-		return -1;
+		MessageBox(nullptr, e.what(), e.GetType(), MB_OK | MB_ICONEXCLAMATION);
 	}
+	catch (const std::exception& e)
+	{
+		MessageBox(nullptr, e.what(), "Standard Exception", MB_OK | MB_ICONEXCLAMATION);
+	}
+	catch (...)
+	{
+		MessageBox(nullptr, "No details available", "Unkonwn Exception", MB_OK | MB_ICONEXCLAMATION);
+	}
+	return -1;
 }
