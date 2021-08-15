@@ -10,7 +10,7 @@ int CALLBACK WinMain(
 {
 	try
 	{
-		Window wnd(800, 300, "lutyu First Box");
+		Window wnd(800, 300, "luyu First Box");
 		//Window wnd2(200, 650, "lutyu First Box2");
 
 		MSG msg;
