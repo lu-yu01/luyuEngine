@@ -69,3 +69,42 @@ void Keyboard::DisableAutorepeat() noexcept
 	autorepeatEnable = false;
 }
 
+bool Keyboard::AutorepeatIsEnabled() const noexcept
+{
+	return autorepeatEnable;
+}
+
+void Keyboard::OnKeyPressed(unsigned char keycode) noexcept
+{
+	keystates[keycode] = true;
+	keybuffer.push(Keyboard::Event(Keyboard::Event::Type::Press, keycode));
+	TrimBuffer(keybuffer);
+}
+
+void Keyboard::OnKeyReleased(unsigned char keycode) noexcept
+{
+	keystates[keycode] = false;
+	keybuffer.push(Keyboard::Event(Keyboard::Event::Type::Release,keycode));
+	TrimBuffer(keybuffer);
+}
+
+void Keyboard::OnChar(char character)noexcept
+{
+	charbuffer.push(character);
+	TrimBuffer(charbuffer);
+}
+
+void Keyboard::ClearState() noexcept
+{
+	keystates.reset();
+}
+
+template<typename T>
+void Keyboard::TrimBuffer(std::queue<T>& buffer) noexcept
+{
+	while (buffer.size() > bufferSize)
+	{
+		buffer.pop();
+	}
+}
+
