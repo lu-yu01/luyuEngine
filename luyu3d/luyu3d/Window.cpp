@@ -63,7 +63,8 @@ Window::Window(int width, int height, const char* name)
 	}
 	 
 	// create window & get hWnd
-	hWnd = CreateWindow(WindowClass::GetName(), name, WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU,
+	hWnd = CreateWindow(WindowClass::GetName(), name, 
+		WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU,
 		CW_USEDEFAULT, CW_USEDEFAULT, wr.right - wr.left, wr.bottom - wr.top,
 		nullptr, nullptr, WindowClass::GetInstance(), this
 	);
@@ -93,7 +94,7 @@ void Window::SetTitle(const std::string& title)
 }
 
 
-std::optional<int> Window::ProcessMessages()
+std::optional<int> Window::ProcessMessages()noexcept
 {
 	MSG msg;
 	while (PeekMessage(&msg, nullptr, 0,0, PM_REMOVE))

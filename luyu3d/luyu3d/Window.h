@@ -44,7 +44,7 @@ public:
 	Window(const Window&) = delete;
 	Window& operator = (const Window&) = delete;
 	void SetTitle(const std::string& title);
-	static std::optional<int> ProcessMessages();
+	static std::optional<int> ProcessMessages()noexcept;
 	Graphics& Gfx();
 private:
 	static LRESULT CALLBACK HandleMsgSetup(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept;
@@ -54,7 +54,6 @@ private:
 public:
 	Keyboard kbd;
 	Mouse mouse;
-	//Graphics gfx;
 private:
 	int width;
 	int height;

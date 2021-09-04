@@ -1,7 +1,5 @@
 #include "Graphics.h"
-#pragma comment(lib, "d3d11.lib")
-
-
+#pragma comment(lib,"d3d11.lib")
 
 Graphics::Graphics(HWND hWnd)
 {
@@ -13,7 +11,7 @@ Graphics::Graphics(HWND hWnd)
 	sd.BufferDesc.RefreshRate.Denominator = 0;
 	sd.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
 	sd.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
-	sd.SampleDesc.Count = 0;
+	sd.SampleDesc.Count = 1;
 	sd.SampleDesc.Quality = 0;
 	sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 	sd.BufferCount = 1;
@@ -33,18 +31,17 @@ Graphics::Graphics(HWND hWnd)
 		D3D11_SDK_VERSION,
 		&sd,
 		&pSwap,
-		&pDevide,
+		&pDevice,
 		nullptr,
 		&pContext
 	);
-
 }
 
 Graphics::~Graphics()
 {
-	if (pDevide != nullptr)
+	if (pDevice != nullptr)
 	{
-		pDevide->Release();
+		pDevice->Release();
 	}
 	if (pSwap != nullptr)
 	{
@@ -54,4 +51,9 @@ Graphics::~Graphics()
 	{
 		pContext->Release();
 	}
+}
+
+void Graphics::EndFrame()
+{
+	pSwap->Present(1u, 0u);
 }

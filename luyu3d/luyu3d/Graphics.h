@@ -1,16 +1,17 @@
 #pragma once
 #include "luyuWin.h"
 #include <d3d11.h>
-class  Graphics
+
+class Graphics
 {
 public:
-	 Graphics(HWND hWnd);
-	 Graphics(const Graphics&) = delete;
-	 Graphics& operator = (const Graphics&) = delete;
-	 ~Graphics();
+	Graphics(HWND hWnd);
+	Graphics(const Graphics&) = delete;
+	Graphics& operator = (const Graphics&) = delete;
+	~Graphics();
+	void EndFrame();
 private:
-	ID3D11Device* pDevide = nullptr;
+	ID3D11Device* pDevice = nullptr;
 	IDXGISwapChain* pSwap = nullptr;
 	ID3D11DeviceContext* pContext = nullptr;
 };
-
