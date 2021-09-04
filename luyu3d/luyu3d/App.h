@@ -1,7 +1,6 @@
 #pragma once
 #include "Window.h"
 #include "luyuTimer.h" 
-
 class App
 {
 public:
