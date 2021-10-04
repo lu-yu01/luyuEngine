@@ -16,6 +16,9 @@
     <Filter Include="Dxerr">
       <UniqueIdentifier>{70b5acb3-44f5-4222-9843-f36d96f7bddf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Shader">
+      <UniqueIdentifier>{2b923115-9f73-495d-9f00-42133a0f8b57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="luyuException.cpp">
@@ -116,5 +119,13 @@
     <None Include="DXTrace.inl">
       <Filter>Dxerr</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="VertexShader.hlsl">
+      <Filter>头文件\Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="PixelShader.hlsl">
+      <Filter>头文件\Shader</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
