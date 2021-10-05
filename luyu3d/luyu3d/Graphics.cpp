@@ -113,9 +113,14 @@ void Graphics::DrawTestTriangle()
 	//create vertex buffer (1  2d  triangle at center of screen)
 	const Vertex vertices[] =
 	{
-		{ 0.0f, 0.5f },
+		{0.0f, 0.5f },
 		{ 0.5f, -0.5f },
 		{ -0.5f, -0.5f },
+
+		{0.5f, 1.0f },
+		{ 1.0f, 0.5f },
+		{ 0.5f, 0.5f },
+
 	};
 	wrl::ComPtr<ID3D11Buffer> pVertexBuffer;
 	D3D11_BUFFER_DESC bd = {};
